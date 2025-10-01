@@ -1,6 +1,10 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 import heapq
+from pathlib import Path
+
+polku = Path.home() / "reititystaulut.txt"
+
 
 def dijkstra(graph, source):
     dist = {node: float('inf') for node in graph.nodes()}
@@ -30,7 +34,7 @@ def reconstruct_path(prev, target):
         target = prev[target]
     return path[::-1]
 
-def print_and_save_routing_tables(graph, filename="reititystaulut.txt"):
+def print_and_save_routing_tables(graph, filename=polku):
     with open(filename, 'w') as f:
         for router in graph.nodes():
             dist, prev = dijkstra(graph, router)
